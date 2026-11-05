@@ -17,3 +17,4 @@ dist/
 
 # Environment / secrets
 .env
+!.env.example

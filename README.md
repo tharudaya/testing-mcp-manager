@@ -36,13 +36,22 @@ Create the database in MySQL:
 CREATE DATABASE task_manager_new;
 ```
 
-The connection string is set in `server/database.py`:
+Database credentials are read from `server/.env`, which is not committed to git. Copy the example file and fill in your own values:
+
+```bash
+cd server
+cp .env.example .env
+```
 
 ```
-mysql+pymysql://root:root@localhost/task_manager_new
+DB_USER=your_mysql_user
+DB_PASSWORD=your_mysql_password
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=task_manager_new
 ```
 
-Change the username and password there to match your MySQL setup. The `tasks` table is created automatically when the server starts.
+The `tasks` table is created automatically when the server starts.
 
 ### 2. Server
 

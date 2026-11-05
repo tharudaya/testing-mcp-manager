@@ -1,9 +1,23 @@
-from sqlalchemy import create_engine
+import os
+
+from dotenv import load_dotenv
+from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 
+# Load database settings from the .env file
+load_dotenv()
+
+
 # MySQL database connection
-DATABASE_URL = "mysql+pymysql://root:root@localhost/task_manager_new"
+DATABASE_URL = URL.create(
+    "mysql+pymysql",
+    username=os.environ["DB_USER"],
+    password=os.environ["DB_PASSWORD"],
+    host=os.getenv("DB_HOST", "localhost"),
+    port=int(os.getenv("DB_PORT", "3306")),
+    database=os.environ["DB_NAME"],
+)
 
 
 # Create the database engine
